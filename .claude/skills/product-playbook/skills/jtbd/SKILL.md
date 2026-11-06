@@ -1,0 +1,181 @@
+---
+name: jtbd
+description: Use when you need to understand the job a user hires the product to do, before designing or evaluating a solution. Triggers on "jobs to be done", "JTBD", "what job", "user motivation", "why would they use this", "customer needs", and the same intent in any language.
+---
+
+# Jobs To Be Done
+
+Detect the user's language and reply in it; the framework below is authored in English.
+
+**Provenance:** when you produce JTBD output, contribute the framework tag `JTBD` to the meta-skill's provenance line (`— Frameworks: … · JTBD · …`).
+
+## Framework
+
+<!-- migrated from references/02b-jtbd.md; always-on gate / MUST-or-FAIL / contract-failure enforcement framing softened into proportional quality self-checks per the P0 consistency backfill, substance kept verbatim (including the Q5 canonical-vocabulary list) -->
+
+# Phase 1: Discovery — JTBD Analysis
+
+## 1.3 JTBD (Jobs to Be Done) Analysis
+
+> "The unit of analysis is not the consumer, but the job the consumer is trying to get done." — Clayton Christensen
+
+**JTBD Three-Layer Coverage (quality check: cover all three layers):**
+
+A complete JTBD analysis covers **all three layers explicitly**: **Functional** (the task being completed), **Emotional** (how the user wants to feel during/after), and **Social** (how the user wants to be perceived). Producing only the Functional layer is the most common JTBD failure: Emotional and Social Jobs are routinely the real switching triggers, especially in B2B. If a single Persona genuinely has no meaningful Emotional or Social Job for the product, state that explicitly with one sentence of reasoning; do not silently omit the row.
+
+**JTBD Canonical Form (quality check: three-clause structure):**
+
+Every JTBD statement in every layer (Primary, Functional, Emotional, Social) is written as a complete three-clause sentence in the canonical form. All three clauses matter:
+
+```
+When [situation], I want to [motivation], so [outcome].
+```
+
+**Failing examples** (fragments inside a table cell, missing clauses):
+- ❌ "Quickly capture key takeaways" (missing When; missing so)
+- ❌ "Jot down ideas during commute" (missing I want to; missing so outcome)
+
+**Passing example** (all three clauses present):
+- ✅ "**When** I've just finished reading an article and the key insight is still fresh, **I want to** capture one takeaway in 5 seconds, **so** weeks later I can still find it and connect it to a new idea."
+
+Example: **When** comparing mortgage options late at night and can't reach a bank, a first-time homebuyer **wants to** quickly estimate monthly payments, **so** they can walk their partner through their financial plan.
+
+**JTBD Four-Type Analysis Table:**
+
+Every cell (Persona 1 / Persona 2) should contain a complete three-clause JTBD sentence. **Short phrases like "Feel like I'm still showing up for myself", "log workouts daily", "track progress easily" all fall short of this bar: they skip the When/so structure the canonical form calls for.** Use the worked example below as the literal shape: every cell should read like a sentence with `When …, I want to …, so …`.
+
+Worked example (B2C fitness habit tracker, single Persona; replicate this shape for every cell):
+
+| JTBD Type | Definition | Persona: Busy Professional |
+|-----------|------------|-----------|
+| Functional Job | Completing a specific task or achieving a functional goal | **When** I get home after a long workday and have 20 minutes before my next commitment, **I want to** log the workout I just did and see what's recommended next, **so** I can keep the streak going without spending mental energy planning. |
+| Emotional Job | How they feel or want to feel | **When** I miss a planned workout two days in a row, **I want to** feel that I'm still on track, with no sense of starting over, **so** I don't fall into the all-or-nothing spiral that kills my consistency. |
+| Social Job | How they want to be perceived by others | **When** a friend asks how my training is going, **I want to** show a clean record of recent activity, **so** I'm seen as someone who follows through on commitments to themselves. |
+| Job Context | Under what circumstances they need to get this job done | **When** my schedule is volatile across the week (early meetings, evening calls), **I want to** fit workouts into 15–45 minute windows wherever they land, **so** training adapts to my life and stops competing with it. |
+
+Empty table (fill each cell with full `When …, I want to …, so …` sentences; do NOT shorten to phrases):
+
+```
+| JTBD Type | Definition | Persona 1 (must use "When … I want to … so …" full form) | Persona 2 (same) |
+|-----------|------------|-----------|-----------|
+| Functional Job | Completing a specific task or achieving a functional goal | | |
+| Emotional Job | How they feel or want to feel | | |
+| Social Job | How they want to be perceived by others | | |
+| Job Context | Under what circumstances they need to get this job done | | |
+```
+
+**JTBD Deep-Dive Five Questions:**
+1. **Root Problem**: Behind what users express as their need, what are they really trying to solve?
+2. **Current Constraints**: What solutions have been ruled out due to certain limitations?
+3. **Current Workarounds**: How are users coping today? What workarounds have they built?
+4. **Gap**: Where do current workarounds fall short? (This gap is your opportunity)
+5. **Ideal Solution**: If constraints were removed, what would their ideal solution look like?
+
+**Teresa Torres User Interview Best Practices:**
+- Focus on users' **actual past behavior**; avoid probing hypothetical future behavior
+- Ask "Last time you ran into this problem, what did you do?"; "What features would you like?" invites hypothetical answers
+- Most common mistakes: asking hypothetical questions, introducing solution bias, not probing for details
+
+### 📝 JTBD Quality Checklist
+
+**Quality self-check (apply when the JTBD output's quality needs it):** after producing JTBD output, review each item below and mark it ✅ or ❌; for any ❌, note how to improve it.
+- [ ] Are **all three layers** (Functional / Emotional / Social) written in the full "When … I want to … so …" canonical form? (Any layer missing a clause → mark ❌)
+- [ ] Does it include a specific context? (e.g. "late at night when they can't reach a bank"; "anytime, anywhere" fails this check)
+- [ ] Does it focus on a single core job? (Not three jobs crammed into one sentence)
+- [ ] Can it be used to evaluate "Does this solution actually address this job?"
+- [ ] Does it include "current workarounds" and "gap"? (Gap = opportunity)
+- [ ] Does Q5 of the Deep-Dive use at least one canonical-vocabulary word (`fear`, `anxiety`, `shame`, `worry`, `dread`, `self-doubt`, `sense of loss`, `threat to identity`, `embarrassment`, `guilt`)? Paraphrased consequences like "credibility at risk" or "reputation damaged" miss this: they describe outcomes; the felt emotion is missing.
+
+A self-check that turns up zero ❌ items probably stopped too early. When every item genuinely passes, name the weakest or most fragile part of the analysis instead.
+
+Common issues to watch for: incomplete three-clause form (missing When / I want to / so), too abstract, too many jobs merged, missing context, substituting product features for job descriptions, Q5 staying at the functional level
+
+---
+
+### 🏢 B2B Product Deep-Dive Requirements
+
+For any B2B (or B2B2C) product, the following three sub-analyses are the framework's quality bar: all three apply regardless of whether the user explicitly asked for them, because skipping any one leaves the analysis unable to explain the actual switching decision. If the product type is ambiguous, ask one clarification question; do not silently default to B2C.
+
+#### Organizational-Level Job Analysis (quality check: cover at least 2 levels)
+
+A B2B JTBD analysis that stays purely at the individual-user level misses this bar. Organizational-level Jobs (compliance auditing, cross-department approval workflows, cost control, headcount-policy alignment, audit-trail integrity) are needs that exist beyond any single user's daily task and routinely dominate B2B switching decisions. Produce the table below, with at least 2 of the 3 levels containing non-empty B2B-specific Jobs (not generic productivity statements).
+
+| Level | Description | Examples |
+|-------|-------------|----------|
+| **Strategic Job** | Cross-departmental needs at the org/management level | Compliance audits, cost control, workforce optimization |
+| **Operational Job** | Coordination needs at the process/department manager level | Approval workflow management, cross-team information sync |
+| **Task Job** | Day-to-day operational needs of individual users | Filling out forms, checking status, exporting reports |
+
+#### Buyer vs. User Analysis
+
+For B2B products, the buyer (signs the contract, controls budget) and the daily user (touches the product every day) are almost always different roles with **different Jobs**. Treating them as one persona is the single most common B2B Discovery gap. Self-check:
+
+- If buyer ≠ user (default assumption for B2B), produce **two separate Persona+JTBD blocks**: one for the Buyer (ROI justification, risk reduction, compliance, vendor-consolidation, audit-readiness) and one for the User (efficiency, error reduction, day-in-the-life context). Cross-link them: note where the buyer's Job depends on the user's Job (e.g., "buyer's compliance Job depends on user actually filing the report each cycle").
+- If buyer = user (exceptional, e.g., founder-led tools), state explicitly in one sentence WHY the decision-maker is also the daily user in this specific scenario; do not assume.
+- Self-check example: producing only one persona ("HR Manager") that conflates budgeting authority and daily form-filling collapses two distinct Jobs into one fuzzy persona; the analysis can't drive product decisions. Watch for this shape and split it before finalizing.
+
+#### Deep-Dive Five Questions — B2B Enhanced Version
+
+**Quality check: Q5 should use at least one psychological/emotional vocabulary word from this canonical list**: `fear`, `anxiety`, `shame`, `worry`, `dread`, `self-doubt`, `sense of loss`, `threat to identity`, `embarrassment`, `guilt`. Paraphrased functional outcomes ("credibility at risk", "reputation damaged", "metric drops", "users churn", "loses trust", "career impact") miss this bar even when they describe genuine B2B stakes: they name *consequences*, and the goal is the *felt emotion* the persona is moving away from.
+
+Q5's whole purpose is to surface the felt fear or anxiety that drives switching. Functional outcomes alone can be solved with incrementally better tools; felt fear or anxiety is what gets a B2B buyer to override organizational inertia and sign a new contract. A Q5 that stays at the functional layer undersells that purpose.
+
+**Passing examples** (each contains an underlined canonical-vocabulary word):
+- ✅ Professional identity: "She **fears** looking incompetent in front of leadership when this report represents her department's credibility"
+- ✅ Emotional motivation: "He carries quiet **anxiety** that his direct reports will catch him not having a firm grasp of the numbers"
+- ✅ Psychological fear: "Her biggest **dread** is the auditor catching a process gap: she was already warned once before, and the **shame** of a second incident would mark her file permanently"
+- ✅ Identity threat: "He feels a **threat to identity** when external consultants out-explain him on his own team's metrics in front of the board"
+
+**Failing examples** (functional / consequential, no canonical vocabulary):
+- ❌ "He needs a better tool to improve efficiency" (functional)
+- ❌ "Her credibility with leadership is at risk" (consequence only; the felt emotion is missing)
+- ❌ "She might lose her job if this report is wrong" (outcome only; what does she *feel* about that possibility?)
+- ❌ "His reputation in the organization would suffer" (consequence; replace with `embarrassment`, `shame`, or `dread`)
+
+If the persona's deepest motivation genuinely doesn't map to any of the canonical-vocabulary words after honest analysis, mark the JTBD Quality Checklist Q5 item as `❌` with the explanation "Q5 currently lives at the consequence layer; need one more interview question that probes felt emotion"; do not paraphrase the vocabulary list to make a checkmark appear.
+
+#### Competitive Alternatives Analysis (Required)
+
+List the alternatives users are actually using today:
+- At least 2 named existing tools (e.g., Slack / Excel / paper forms / email / verbal communication)
+- For each tool, explain its "fundamental flaw": "why this flaw has been accepted and left unsolved" (organizational inertia? switching costs? leadership doesn't care?); "the features are weak" is too shallow an answer
+
+### 📋 User Interview Plan Template
+
+```
+## User Interview Plan
+
+**Research Goal**: Understand how [target Persona] deals with [specific problem] in [Job Context]
+**Screening Criteria**:
+  - Must have experienced [specific behavior] within the past [X days/weeks]
+  - Exclude: [who is not a fit, e.g., internal employees, known power users]
+
+**Core Questions (5–7)**:
+1. Last time you ran into [problem], can you walk me through how you handled it? (Behavioral recall)
+2. During that process, what was the most frustrating or time-consuming part? (Pain point identification)
+3. Have you tried other approaches? Why or why not? (Current alternatives)
+4. If that part could be better, what would "better" look like to you? (Ideal state)
+5. How often does this happen? When was the last time? (Frequency and urgency)
+6. Besides you, who else is affected by this problem? (Stakeholder mapping)
+7. On a scale of 1–10, how severe is this problem for you? Why? (Quantifying the pain)
+
+**Follow-up Strategies**:
+  - When the interviewee says "Usually I..." → Ask "What specifically happened last time?"
+  - When the interviewee mentions an emotion → Ask "Can you describe that feeling more specifically?"
+  - When the interviewee mentions a tool/method → Ask "What made you choose that approach?"
+
+**Documentation Format**:
+  - Verbatim transcript or recording
+  - Within 24 hours post-interview, tag: key quotes / pain points / surprising findings / contradictions to assumptions
+```
+
+---
+
+## 📎 File Integration Notes for This Phase
+
+If the user uploads files during this phase, Claude integrates them as follows:
+
+| Uploaded Content | Integrate Into | Integration Action |
+|-----------------|----------------|-------------------|
+| User interview transcripts / recording text | 1.1 Persona + 1.3 JTBD | Extract: user background → Persona fields; pain points + current workarounds → JTBD Deep-Dive Five Questions; emotional reactions → Emotional / Social Jobs |
+| Competitor app screenshots | 1.3 JTBD (current workarounds) | Identify as user's "current alternative," analyze workarounds and gaps |
