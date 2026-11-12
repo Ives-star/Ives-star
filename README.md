@@ -1,8 +1,14 @@
 # Ives-star
 
-## Product Playbook（Claude Code plugin）
+## Product Playbook（Claude Code 專案 skill）
 
-本 repo 內含 [product-playbook](https://github.com/kaminoikari/product-playbook) v2.4.0（MIT 授權），位置在 `.claude/skills/product-playbook/`。在這個 repo 開啟 Claude Code 時會以專案範圍的 plugin 自動載入，不需另外安裝。
+本 repo 內含 [product-playbook](https://github.com/kaminoikari/product-playbook) v2.4.0（MIT 授權），已從 plugin 轉成一般的專案 skill、專案 agents 與專案 hooks。原因：專案範圍的 skills-directory plugin 在工作區未受信任時會被略過，雲端 session 因此載入不到。
+
+| 元件 | 位置 |
+|---|---|
+| Skill（入口） | `.claude/skills/product-playbook/SKILL.md`，導向 `skills/product-playbook/SKILL.md`（meta-skill）與 `skills/<lens>/SKILL.md` |
+| Agents | `.claude/agents/pre-mortem-runner.md`、`.claude/agents/strategy-critic.md` |
+| Hooks | `.claude/settings.json`，執行 `.claude/skills/product-playbook/hooks/*.py` |
 
 ### 使用
 
@@ -18,11 +24,12 @@
 |---|---|
 | SessionStart | 載入規劃進度、注入 meta-skill 與開發紀律提示 |
 | UserPromptSubmit | 偵測換題或需要連帶修改的提示 |
-| PreToolUse（Write/Edit） | 規劃階段擋下程式碼寫入、TDD 檢查（沒有對應測試就擋下程式碼修改）、機密掃描 |
+| PreToolUse（Write/Edit） | 規劃進行中時提醒不要寫程式碼；TDD 提醒（沒有對應測試時提示，不會擋下）；機密掃描（偵測到疑似金鑰時要求確認） |
 
-PreToolUse hooks 會擋下部分寫入，包括 `index.html` 這類程式碼檔案。要停用某個 hook，請編輯 `.claude/skills/product-playbook/hooks/hooks.json`。
+- TDD 提醒只針對程式碼副檔名（`.ts`、`.js`、`.py` 等），不含 `.html`。在 repo 根目錄放 `.product-tdd-waived` 檔可關閉。
+- 要停用某個 hook，請編輯 `.claude/settings.json`。`hooks/hooks.json` 是上游 plugin 的原始定義，僅供參考，不會生效。
 
 ### 更新或移除
 
-- 更新：用新版套件內容取代 `.claude/skills/product-playbook/`（不要放入 `install.sh` 與 `.claude-plugin/marketplace.json`），檢查差異後再 commit。
-- 移除：刪除 `.claude/skills/product-playbook/` 並 commit。
+- 更新：用新版套件內容取代 `.claude/skills/product-playbook/`，然後重做轉換：保留入口 `SKILL.md`、刪除 `.claude-plugin/`、把 `agents/*.md` 移到 `.claude/agents/`、把 `${CLAUDE_PLUGIN_ROOT}` 改成 `.claude/skills/product-playbook`、依新版 `hooks/hooks.json` 更新 `.claude/settings.json`。檢查差異後再 commit。
+- 移除：刪除 `.claude/skills/product-playbook/`、`.claude/agents/pre-mortem-runner.md`、`.claude/agents/strategy-critic.md`，並移除 `.claude/settings.json` 的 `hooks` 區塊，然後 commit。

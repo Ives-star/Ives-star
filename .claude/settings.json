@@ -1,0 +1,64 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/session-start-load-progress.py",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/session-start-inject-metaskill.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/session-start-inject-dev-discipline.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/user-prompt-detect-topic-switch.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/pre-write-planning-gate.py",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/pre-write-tdd-gate.py",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "CLAUDE_PLUGIN_ROOT=\"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\" python3 \"$CLAUDE_PROJECT_DIR/.claude/skills/product-playbook\"/hooks/pre-write-secret-guard.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
